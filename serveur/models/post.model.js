@@ -26,10 +26,7 @@ function getPost(id) {
 function insertPost(newPost) {
     return new Promise((resolve, reject) => {
         const id = { _id: helper.getNewId(posts) }
-       /* const date = { 
-            createdAt: helper.newDate(),
-            updatedAt: helper.newDate()
-        } */
+
         
         newPost = { ...id, ...newPost }
         posts.push(newPost)
@@ -44,10 +41,7 @@ function updatePost(id, newPost) {
         .then(post => {
             const index = posts.findIndex(p => p.id == post.id)
             id = { _id: post.id }
-            /*const date = {
-                createdAt: post.createdAt,
-                updatedAt: helper.newDate()
-            } */
+          
             posts[index] = { ...id, ...newPost }
             helper.writeJSONFile(filename, posts)
             resolve(posts[index])
